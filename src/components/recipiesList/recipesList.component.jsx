@@ -1,15 +1,18 @@
-import React from "react";
+import React, { Fragment } from "react";
 import RecipeCard from "../recipeCard/recipeCard.component";
 import { recipes } from "../../recipesData";
+import { RecipesContainer, RecipesHeader } from "./recipiesList.style";
 
 const RecipiesList = () => {
   return (
-    <div className="recipes-container">
-      <div className="recipes-header">Tope Recipes</div>
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
-    </div>
+    <Fragment>
+      <RecipesHeader>Top Recipes</RecipesHeader>
+      <RecipesContainer>
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe.id} recipe={recipe} />
+        ))}
+      </RecipesContainer>
+    </Fragment>
   );
 };
 

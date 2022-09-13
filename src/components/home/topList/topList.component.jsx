@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import TopCard from "../recipeCard/recipeCard.component";
+import TopCard from "../topCard/topCard.component";
 
-import { TopContainer, TopHeader, ButtonContainer } from "./recipiesList.style";
+import { TopContainer, TopHeader, ButtonContainer } from "./topList.style";
 
 const TopList = ({ title, data }) => {
   return (

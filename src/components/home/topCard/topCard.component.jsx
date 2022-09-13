@@ -1,5 +1,5 @@
 import React from "react";
-import { TopCardContainer } from "./recipeCard.style";
+import { TopCardContainer } from "./topCard.style";
 
 const TopCard = ({ data }) => {
   const { name, description, cuisine } = data;

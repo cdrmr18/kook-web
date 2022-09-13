@@ -1,20 +1,22 @@
 import React from "react";
+import { Link } from "@chakra-ui/react";
+import { NavbarContainer, NavLinksContainer, NavbarLink } from "./navbar.style";
 
 const NavBar = () => {
   return (
-    <nav>
+    <NavbarContainer>
       <h2>Kook</h2>
-      <ul>
-        <li>Home</li>
-        <li>Recipes</li>
-        <li>Chefs</li>
-        <li>Bookings</li>
-        <li>Dashboard</li>
-        <li>Cart</li>
-        <li>Sign in</li>
-        <li>Sign out</li>
-      </ul>
-    </nav>
+      <NavLinksContainer>
+        <NavbarLink>Home</NavbarLink>
+        <NavbarLink>Recipes</NavbarLink>
+        <NavbarLink>Chefs</NavbarLink>
+        <NavbarLink>Bookings</NavbarLink>
+        <NavbarLink>Dashboard</NavbarLink>
+        <NavbarLink>Cart</NavbarLink>
+        <NavbarLink>Sign in</NavbarLink>
+        <NavbarLink>Sign out</NavbarLink>
+      </NavLinksContainer>
+    </NavbarContainer>
   );
 };
 

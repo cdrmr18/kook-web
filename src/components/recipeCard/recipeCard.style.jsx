@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
-export const RecipeContainer = styled.div`
+export const TopCardContainer = styled.div`
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   margin: 0 12px;
   width: 30%;
 `;
-// .card-trip {
-//
-// }
 
 // .card-trip > img {
 //   height: 200px;

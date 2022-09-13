@@ -1,19 +1,22 @@
 import React, { Fragment } from "react";
-import RecipeCard from "../recipeCard/recipeCard.component";
-import { recipes } from "../../recipesData";
-import { RecipesContainer, RecipesHeader } from "./recipiesList.style";
+import TopCard from "../recipeCard/recipeCard.component";
 
-const RecipiesList = () => {
+import { TopContainer, TopHeader, ButtonContainer } from "./recipiesList.style";
+
+const TopList = ({ title, data }) => {
   return (
     <Fragment>
-      <RecipesHeader>Top Recipes</RecipesHeader>
-      <RecipesContainer>
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+      <TopHeader>Top {title}</TopHeader>
+      <TopContainer>
+        {data.map((data) => (
+          <TopCard key={data.id} data={data} />
         ))}
-      </RecipesContainer>
+      </TopContainer>
+      <ButtonContainer>
+        <button>All {title}</button>
+      </ButtonContainer>
     </Fragment>
   );
 };
 
-export default RecipiesList;
+export default TopList;

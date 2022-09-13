@@ -1,16 +1,16 @@
 import React from "react";
-import { RecipeContainer } from "./recipeCard.style";
+import { TopCardContainer } from "./recipeCard.style";
 
-const RecipeCard = ({ recipe }) => {
-  const { name, description, cuisine } = recipe;
+const TopCard = ({ data }) => {
+  const { name, description, cuisine } = data;
   return (
-    <RecipeContainer>
+    <TopCardContainer>
       <div>{name}</div>
       <p>{cuisine}</p>
-      <p>{description}</p>
+      {description}
       <p>View More</p>
-    </RecipeContainer>
+    </TopCardContainer>
   );
 };
 
-export default RecipeCard;
+export default TopCard;

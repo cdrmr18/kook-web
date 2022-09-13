@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
-export const RecipesContainer = styled.div`
+export const TopContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const RecipesHeader = styled.h2`
+export const TopHeader = styled.h2`
   text-align: center;
   margin: 12px auto;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
 `;

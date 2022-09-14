@@ -1,4 +1,4 @@
-import GET_CURRENT_USER from "./user.types";
+import GET_CURRENT_USER from "./userTypes";
 
 const INITIAL_STATE = {
   currentUser: null,

@@ -7,7 +7,15 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -80,3 +88,47 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
   }
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+//  get chefs data
+export const getChefsAndDocuments = async () => {
+  const collectionRef = collection(db, "chefs");
+
+  const querySnapshot = await getDocs(collectionRef);
+
+  const chefsMap = querySnapshot.docs.map((doc) => doc.data());
+  return chefsMap;
+};
+
+// get all users data
+// export const getUsersAndDocuments = async () => {
+//   const collectionRef = collection(db, "users");
+
+//   const querySnapshot = await getDocs(collectionRef);
+
+//   const usersMap = querySnapshot.docs.map((doc) => doc.data());
+//   return usersMap;
+// };
+
+// get recipes data
+export const getRecipesAndDocuments = async () => {
+  const collectionRef = collection(db, "recipes");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  const recipesMap = querySnapshot.docs.reduce((acc, docs) => {
+    const { chef, recipes } = docs.data();
+    acc[chef.toLowerCase()] = recipes;
+    return acc;
+  }, {});
+  return recipesMap;
+};
+
+//to get the data maps
+// useEffect(() => {
+//   const getRecipes = async () => {
+//     const recipesMap = await getRecipesAndDocuments();
+//     console.log("recipesMap", recipesMap);
+//   };
+//   getRecipes();
+// }, []);

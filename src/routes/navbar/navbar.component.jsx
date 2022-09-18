@@ -23,7 +23,7 @@ const NavBar = () => {
           <NavbarLink to="/">Home</NavbarLink>
           <NavbarLink to="/recipes">Recipes</NavbarLink>
           <NavbarLink to="/chefs">Chefs</NavbarLink>
-          <NavbarLink to="/bookings">Bookings</NavbarLink>
+          <NavbarLink to="/bookings">My Bookings</NavbarLink>
           <NavbarLink to="/dashboard">Dashboard</NavbarLink>
           {currentUser ? (
             <span onClick={signOutUser}>Sign out</span>

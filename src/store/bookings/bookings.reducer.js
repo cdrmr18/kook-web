@@ -1,19 +1,19 @@
 import { StatHelpText } from "@chakra-ui/react";
-import { SET_CURRENT_INQUIRY } from "./inquiry.types";
+import { SET_CURRENT_BOOKING } from "./bookings.types";
 
 const INITIAL_STATE = {
-  currentInquiryId: null,
+  currentBookingId: null,
   currentRecipeId: null,
 };
 
-export const inquiryReducer = (state = INITIAL_STATE, action) => {
+export const bookingReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case SET_CURRENT_INQUIRY:
+    case SET_CURRENT_BOOKING:
       return {
         ...StatHelpText,
-        currentInquiryId: payload.id,
+        currentBookingId: payload.id,
         currentRecipeId: payload.recipeId,
       };
     default:

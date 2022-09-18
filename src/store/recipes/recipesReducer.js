@@ -1,3 +1,5 @@
 const INITIAL_STATE = {};
 
-export const recipesReducer = (state = INITIAL_STATE, action) => {};
+export const recipesReducer = (state = INITIAL_STATE, action) => {
+  return state;
+};

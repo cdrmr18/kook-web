@@ -3,7 +3,6 @@ import Recipes from "./routes/recipes/recipes.component";
 import Chefs from "./routes/chefs/chefs.component";
 import Bookings from "./routes/bookings/bookings.component";
 import Authentication from "./routes/authentication/authentication.component";
-import SignOut from "./routes/SignOut/signOut.component";
 import Home from "./routes/home/home/home.component";
 import NavBar from "./routes/navbar/navbar.component";
 import Dashboard from "./routes/dashboard/dashboard.component";
@@ -18,7 +17,6 @@ function App() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sign-in" element={<Authentication />} />
-        <Route path="/sign-out" element={<SignOut />} />
       </Route>
     </Routes>
   );

@@ -1,5 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { Outlet } from "react-router-dom";
+import { UserContext } from "../../context/user.context";
+import { signOutUser } from "../../utils/firebase/firebaseUtils";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 import {
   NavbarContainer,
@@ -9,6 +11,12 @@ import {
 } from "./navbar.style";
 
 const NavBar = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
   return (
     <Fragment>
       <NavbarContainer>
@@ -21,8 +29,11 @@ const NavBar = () => {
           <NavbarLink to="/chefs">Chefs</NavbarLink>
           <NavbarLink to="/bookings">Bookings</NavbarLink>
           <NavbarLink to="/dashboard">Dashboard</NavbarLink>
-          <NavbarLink to="sign-in">Sign in</NavbarLink>
-          <NavbarLink to="sign-out">Sign out</NavbarLink>
+          {currentUser ? (
+            <span onClick={signOutHandler}>Sign out</span>
+          ) : (
+            <NavbarLink to="sign-in">Sign in</NavbarLink>
+          )}
         </NavLinksContainer>
       </NavbarContainer>
       <Outlet />

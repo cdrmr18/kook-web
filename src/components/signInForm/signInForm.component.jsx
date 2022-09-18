@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
   signInUserWithEmailAndPassword,
 } from "../../utils/firebase/firebaseUtils";
+import { UserContext } from "../../context/user.context";
 import { FormLabel, Input, FormHelperText, Button } from "@chakra-ui/react";
 import { StyledFormControl } from "./signInForm.style";
 
@@ -13,6 +14,7 @@ const defaultFields = {
 };
 
 const SignInForm = () => {
+  const { setCurrentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(defaultFields);
   const { signInEmail, signInPassword } = formFields;
 
@@ -29,8 +31,11 @@ const SignInForm = () => {
     e.preventDefault();
 
     try {
-      await signInUserWithEmailAndPassword(signInEmail, signInPassword);
-
+      const { user } = await signInUserWithEmailAndPassword(
+        signInEmail,
+        signInPassword
+      );
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch (error.code) {

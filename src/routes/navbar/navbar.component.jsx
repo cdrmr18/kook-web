@@ -11,12 +11,8 @@ import {
 } from "./navbar.style";
 
 const NavBar = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
   return (
     <Fragment>
       <NavbarContainer>
@@ -30,7 +26,7 @@ const NavBar = () => {
           <NavbarLink to="/bookings">Bookings</NavbarLink>
           <NavbarLink to="/dashboard">Dashboard</NavbarLink>
           {currentUser ? (
-            <span onClick={signOutHandler}>Sign out</span>
+            <span onClick={signOutUser}>Sign out</span>
           ) : (
             <NavbarLink to="sign-in">Sign in</NavbarLink>
           )}

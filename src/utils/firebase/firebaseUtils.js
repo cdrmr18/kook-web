@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import {
@@ -93,6 +94,11 @@ export const signInUserWithEmailAndPassword = async (email, password) => {
 //  sign out a user
 export const signOutUser = async () => await signOut(auth);
 
+// state change listener for user state
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
+// FIRESTORE
 //  get chefs data
 export const getChefsAndDocuments = async () => {
   const collectionRef = collection(db, "chefs");

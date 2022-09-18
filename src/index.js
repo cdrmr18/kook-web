@@ -5,6 +5,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { UserProvider } from "./context/user.context";
+import { RecipesProvider } from "./context/recipes.context";
+import { ChefsProvider } from "./context/chefs.context";
 import "./index.css";
 import App from "./App";
 
@@ -14,7 +16,11 @@ root.render(
     <BrowserRouter>
       <ChakraProvider>
         <UserProvider>
-          <App />
+          <RecipesProvider>
+            <ChefsProvider>
+              <App />
+            </ChefsProvider>
+          </RecipesProvider>
         </UserProvider>
       </ChakraProvider>
     </BrowserRouter>

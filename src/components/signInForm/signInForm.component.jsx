@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInUserWithEmailAndPassword,
 } from "../../utils/firebase/firebaseUtils";
 import { FormLabel, Input, FormHelperText, Button } from "@chakra-ui/react";

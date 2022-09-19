@@ -8,7 +8,7 @@ const Recipes = () => {
   return (
     <Fragment>
       {Object.keys(recipesMap).map((title) => (
-        <CategoryContainer>
+        <CategoryContainer key={title}>
           {recipesMap[title].map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}

@@ -1,16 +1,18 @@
 import React, { Fragment, useContext } from "react";
+import RecipeCard from "../../components/recipeCard/recipeCard.component";
 import { RecipesContext } from "../../context/recipes.context";
+import { CategoryContainer } from "./recipes.styles";
 
 const Recipes = () => {
   const { recipesMap } = useContext(RecipesContext);
   return (
     <Fragment>
       {Object.keys(recipesMap).map((title) => (
-        <Fragment>
+        <CategoryContainer>
           {recipesMap[title].map((recipe) => (
-            <h2 key={recipe.id}>{recipe.name}</h2>
+            <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
-        </Fragment>
+        </CategoryContainer>
       ))}
     </Fragment>
   );

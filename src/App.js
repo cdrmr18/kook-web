@@ -5,7 +5,6 @@ import Bookings from "./routes/bookings/bookings.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Home from "./routes/home/home/home.component";
 import NavBar from "./routes/navbar/navbar.component";
-import Dashboard from "./routes/dashboard/dashboard.component";
 
 function App() {
   return (
@@ -15,7 +14,6 @@ function App() {
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/chefs" element={<Chefs />} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sign-in" element={<Authentication />} />
       </Route>
     </Routes>

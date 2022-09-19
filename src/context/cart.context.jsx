@@ -14,6 +14,18 @@ const addCartItem = (cartItems, recipeToAdd) => {
   return [...cartItems, { ...recipeToAdd, quantity: 1 }];
 };
 
+const decrementCartItem = (cartItems, recipeToDecrement) => {
+  return cartItems.map((item) =>
+    item.id === recipeToDecrement.id
+      ? { ...item, quantity: item.quantity - 1 }
+      : item
+  );
+};
+
+const removeItemFromCart = (cartItems, recipeToRemove) => {
+  return cartItems.filter((item) => item.id !== recipeToRemove.id);
+};
+
 export const CartContext = createContext({
   cartItems: [],
   addItemToCart: () => {},
@@ -29,7 +41,22 @@ export const CartProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, recipeToAdd));
   };
 
-  const value = { showCart, setShowCart, addItemToCart, cartItems };
+  const decrementItemInCart = (recipeToDecrement) => {
+    setCartItems(decrementCartItem(cartItems, recipeToDecrement));
+  };
+
+  const removeCartItem = (recipeToRemove) => {
+    setCartItems(removeItemFromCart(cartItems, recipeToRemove));
+  };
+
+  const value = {
+    showCart,
+    setShowCart,
+    addItemToCart,
+    removeCartItem,
+    cartItems,
+    decrementItemInCart,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/cart.context";
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -7,6 +8,8 @@ import {
 
 const CheckoutItem = ({ item }) => {
   const { name, price, img, quantity } = item;
+  const { addItemToCart, removeCartItem, decrementItemInCart } =
+    useContext(CartContext);
 
   return (
     <CheckoutItemContainer>
@@ -15,12 +18,16 @@ const CheckoutItem = ({ item }) => {
       </ImageContainer>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div className="arrow">&#10094;</div>
+        <div className="arrow" onClick={() => decrementItemInCart(item)}>
+          &#10094;
+        </div>
         <span className="value">{quantity}</span>
-        <div className="arrow">&#10095;</div>
+        <div className="arrow" onClick={() => addItemToCart(item)}>
+          &#10095;
+        </div>
       </span>
       <span className="price">$ {price}</span>
-      <RemoveButton>&#10005;</RemoveButton>
+      <RemoveButton onClick={() => removeCartItem(item)}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
 };

@@ -14,16 +14,24 @@ const addCartItem = (cartItems, recipeToAdd) => {
   return [...cartItems, { ...recipeToAdd, quantity: 1 }];
 };
 
+const removeItemFromCart = (cartItems, recipeToRemove) => {
+  return cartItems.filter((item) => item.id !== recipeToRemove.id);
+};
+
 const decrementCartItem = (cartItems, recipeToDecrement) => {
+  const existingItem = cartItems.find(
+    (item) => item.id === recipeToDecrement.id
+  );
+
+  if (existingItem.quantity === 1) {
+    return removeItemFromCart(cartItems, recipeToDecrement);
+  }
+
   return cartItems.map((item) =>
     item.id === recipeToDecrement.id
       ? { ...item, quantity: item.quantity - 1 }
       : item
   );
-};
-
-const removeItemFromCart = (cartItems, recipeToRemove) => {
-  return cartItems.filter((item) => item.id !== recipeToRemove.id);
 };
 
 export const CartContext = createContext({

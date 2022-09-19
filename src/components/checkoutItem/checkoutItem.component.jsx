@@ -11,6 +11,18 @@ const CheckoutItem = ({ item }) => {
   const { addItemToCart, removeCartItem, decrementItemInCart } =
     useContext(CartContext);
 
+  const handleItemDecrement = () => {
+    decrementItemInCart(item);
+  };
+
+  const handleItemAdd = () => {
+    addItemToCart(item);
+  };
+
+  const handleItemRemoval = () => {
+    removeCartItem(item);
+  };
+
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -18,16 +30,16 @@ const CheckoutItem = ({ item }) => {
       </ImageContainer>
       <span className="name">{name}</span>
       <span className="quantity">
-        <div className="arrow" onClick={() => decrementItemInCart(item)}>
+        <div className="arrow" onClick={handleItemDecrement}>
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItemToCart(item)}>
+        <div className="arrow" onClick={handleItemAdd}>
           &#10095;
         </div>
       </span>
       <span className="price">$ {price}</span>
-      <RemoveButton onClick={() => removeCartItem(item)}>&#10005;</RemoveButton>
+      <RemoveButton onClick={handleItemRemoval}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
 };

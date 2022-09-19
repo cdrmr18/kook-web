@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { UserProvider } from "./context/user.context";
 import { RecipesProvider } from "./context/recipes.context";
 import { ChefsProvider } from "./context/chefs.context";
+import { CartProvider } from "./context/cart.context";
 import "./index.css";
 import App from "./App";
 
@@ -18,7 +19,9 @@ root.render(
         <UserProvider>
           <RecipesProvider>
             <ChefsProvider>
-              <App />
+              <CartProvider>
+                <App />
+              </CartProvider>
             </ChefsProvider>
           </RecipesProvider>
         </UserProvider>

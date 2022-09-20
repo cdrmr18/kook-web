@@ -1,20 +1,31 @@
 import React, { Fragment, useContext } from "react";
 import RecipeCard from "../../components/recipeCard/recipeCard.component";
 import { RecipesContext } from "../../context/recipes.context";
-import { CategoryContainer } from "./recipes.styles";
+import {
+  RecipesPreviewContainer,
+  RecipesTitle,
+  Preview,
+} from "./recipes.styles";
 
 const Recipes = () => {
   const { recipesMap } = useContext(RecipesContext);
   return (
-    <Fragment>
+    <RecipesPreviewContainer>
       {Object.keys(recipesMap).map((title) => (
-        <CategoryContainer key={title}>
-          {recipesMap[title].map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))}
-        </CategoryContainer>
+        <Fragment>
+          <h2>
+            <RecipesTitle key={title}>{title}</RecipesTitle>
+          </h2>
+          <Preview key={title}>
+            {recipesMap[title]
+              .filter((_, idx) => idx < 4)
+              .map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} />
+              ))}
+          </Preview>
+        </Fragment>
       ))}
-    </Fragment>
+    </RecipesPreviewContainer>
   );
 };
 

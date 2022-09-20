@@ -3,11 +3,11 @@ import { ChefsContext } from "../../context/chefs.context";
 
 const Chefs = () => {
   const { chefsMap } = useContext(ChefsContext);
-
+  console.log("chefsMap", chefsMap);
   return (
     <div>
       {chefsMap.map((chef) => (
-        <h1 key={chef.id}>{chef.firstName}</h1>
+        <h1 key={chef.id}>{chef.info[0].name}</h1>
       ))}
     </div>
   );

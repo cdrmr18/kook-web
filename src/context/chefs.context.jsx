@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { getChefsAndDocuments } from "../utils/firebase/firebaseUtils";
-
 export const ChefsContext = createContext({
   chefsMap: [],
 });

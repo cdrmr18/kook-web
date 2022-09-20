@@ -17,6 +17,7 @@ import {
   collection,
   query,
   getDocs,
+  writeBatch,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -109,16 +110,6 @@ export const getChefsAndDocuments = async () => {
   return chefsMap;
 };
 
-// get all users data
-// export const getUsersAndDocuments = async () => {
-//   const collectionRef = collection(db, "users");
-
-//   const querySnapshot = await getDocs(collectionRef);
-
-//   const usersMap = querySnapshot.docs.map((doc) => doc.data());
-//   return usersMap;
-// };
-
 // get recipes data
 export const getRecipesAndDocuments = async () => {
   const collectionRef = collection(db, "recipes");
@@ -134,11 +125,16 @@ export const getRecipesAndDocuments = async () => {
   return recipesMap;
 };
 
-//to get the data maps
-// useEffect(() => {
-//   const getRecipes = async () => {
-//     const recipesMap = await getRecipesAndDocuments();
-//     console.log("recipesMap", recipesMap);
-//   };
-//   getRecipes();
-// }, []);
+//  add new collection and data to db
+export const addCollectionAndDocuments = async (collectionKey, objsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objsToAdd.forEach((obj) => {
+    const docRef = doc(collectionRef, obj.chef.toLowerCase());
+    batch.set(docRef, obj);
+  });
+
+  await batch.commit();
+  console.log("done");
+};

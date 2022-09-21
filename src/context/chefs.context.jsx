@@ -1,11 +1,36 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 import { getChefsAndDocuments } from "../utils/firebase/firebaseUtils";
+
 export const ChefsContext = createContext({
   chefsMap: [],
 });
 
+const INITITAL_STATE = {
+  chefsMap: [],
+};
+
+export const SET_CHEFS = "SET_CHEFS";
+
+const chefsReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case SET_CHEFS:
+      return {
+        ...state,
+        chefsMap: payload,
+      };
+    default:
+      return state;
+  }
+};
+
 export const ChefsProvider = ({ children }) => {
-  const [chefsMap, setChefsMap] = useState([]);
+  const [{ chefsMap }, dispatch] = useReducer(chefsReducer, INITITAL_STATE);
+
+  const setChefsMap = (chefs) => {
+    dispatch({ type: SET_CHEFS, payload: chefs });
+  };
 
   useEffect(() => {
     const getChefsMap = async () => {

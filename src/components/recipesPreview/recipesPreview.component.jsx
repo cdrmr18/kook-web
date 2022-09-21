@@ -13,18 +13,19 @@ const RecipesPreview = () => {
   return (
     <RecipesPreviewContainer>
       {Object.keys(recipesMap).map((title) => (
-        <Fragment>
+        <Fragment key={title}>
           <h2>
             <Link to={`${title}`}>
-              <RecipesTitle key={title}>{title}</RecipesTitle>
+              <RecipesTitle>{title}</RecipesTitle>
             </Link>
           </h2>
-          <Preview key={title}>
-            {recipesMap[title]
-              .filter((_, idx) => idx < 4)
-              .map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
+          <Preview>
+            {recipesMap &&
+              recipesMap[title]
+                .filter((_, idx) => idx < 4)
+                .map((recipe) => (
+                  <RecipeCard key={recipe.id} recipe={recipe} />
+                ))}
           </Preview>
         </Fragment>
       ))}

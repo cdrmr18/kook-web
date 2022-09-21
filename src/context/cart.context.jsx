@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useReducer } from "react";
 
 const addCartItem = (cartItems, recipeToAdd) => {
   const existingItem = cartItems.find((item) => item.id === recipeToAdd.id);
@@ -43,40 +43,82 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
+export const SET_CART_ITEMS = "SET_CART_ITEMS";
+export const TOGGLE_SHOW_CART = "TOGGLE_SHOW_CART";
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case SET_CART_ITEMS:
+      return {
+        ...state,
+        ...payload,
+      };
+    case TOGGLE_SHOW_CART:
+      return {
+        ...state,
+        showCart: payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const INITIAL_STATE = {
+  cartItems: [],
+  showCart: false,
+  cartCount: 0,
+  cartTotal: 0,
+};
+
 export const CartProvider = ({ children }) => {
-  const [showCart, setShowCart] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
+  const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+  const { cartItems, cartCount, cartTotal, showCart } = state;
 
-  useEffect(() => {
-    const newCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    setCartCount(newCount);
-  }, [cartItems]);
+  const toggleShowCart = (bool) => {
+    dispatch({ type: TOGGLE_SHOW_CART, payload: bool });
+  };
 
-  useEffect(() => {
-    const newTotal = cartItems.reduce(
+  const updateCartItems = (newCartItems) => {
+    const newCartTotal = newCartItems.reduce(
       (acc, item) => acc + item.quantity * item.price,
       0
     );
-    setCartTotal(newTotal);
-  }, [cartItems]);
+
+    const newCartCount = newCartItems.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+
+    dispatch({
+      type: SET_CART_ITEMS,
+      payload: {
+        cartItems: newCartItems,
+        cartCount: newCartCount,
+        cartTotal: newCartTotal,
+      },
+    });
+  };
 
   const addItemToCart = (recipeToAdd) => {
-    setCartItems(addCartItem(cartItems, recipeToAdd));
+    const newCartItems = addCartItem(cartItems, recipeToAdd);
+    updateCartItems(newCartItems);
   };
 
   const decrementItemInCart = (recipeToDecrement) => {
-    setCartItems(decrementCartItem(cartItems, recipeToDecrement));
+    const newCartItems = decrementCartItem(cartItems, recipeToDecrement);
+    updateCartItems(newCartItems);
   };
 
   const removeCartItem = (recipeToRemove) => {
-    setCartItems(removeItemFromCart(cartItems, recipeToRemove));
+    const newCartItems = removeItemFromCart(cartItems, recipeToRemove);
+    updateCartItems(newCartItems);
   };
 
   const value = {
     showCart,
-    setShowCart,
+    toggleShowCart,
     addItemToCart,
     removeCartItem,
     cartItems,

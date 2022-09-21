@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import RecipeCard from "../../components/recipeCard/recipeCard.component";
 import { RecipesContext } from "../../context/recipes.context";
 import {
@@ -14,7 +15,9 @@ const RecipesPreview = () => {
       {Object.keys(recipesMap).map((title) => (
         <Fragment>
           <h2>
-            <RecipesTitle key={title}>{title}</RecipesTitle>
+            <Link to={`${title}`}>
+              <RecipesTitle key={title}>{title}</RecipesTitle>
+            </Link>
           </h2>
           <Preview key={title}>
             {recipesMap[title]

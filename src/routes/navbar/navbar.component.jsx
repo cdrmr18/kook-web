@@ -27,7 +27,6 @@ const NavBar = () => {
         <NavLinksContainer>
           <NavbarLink to="/">Home</NavbarLink>
           <NavbarLink to="/recipes">Recipes</NavbarLink>
-          <NavbarLink to="/chefs">Chefs</NavbarLink>
           {currentUser ? (
             <span onClick={signOutUser}>Sign out</span>
           ) : (

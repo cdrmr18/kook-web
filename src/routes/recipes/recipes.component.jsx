@@ -1,31 +1,14 @@
-import React, { Fragment, useContext } from "react";
-import RecipeCard from "../../components/recipeCard/recipeCard.component";
-import { RecipesContext } from "../../context/recipes.context";
-import {
-  RecipesPreviewContainer,
-  RecipesTitle,
-  Preview,
-} from "./recipes.styles";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import RecipesPreview from "../../components/recipesPreview/recipesPreview.component";
+import Chef from "../chef/chef.component";
 
 const Recipes = () => {
-  const { recipesMap } = useContext(RecipesContext);
   return (
-    <RecipesPreviewContainer>
-      {Object.keys(recipesMap).map((title) => (
-        <Fragment>
-          <h2>
-            <RecipesTitle key={title}>{title}</RecipesTitle>
-          </h2>
-          <Preview key={title}>
-            {recipesMap[title]
-              .filter((_, idx) => idx < 4)
-              .map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
-              ))}
-          </Preview>
-        </Fragment>
-      ))}
-    </RecipesPreviewContainer>
+    <Routes>
+      <Route index element={<RecipesPreview />}></Route>
+      <Route path=":chef" element={<Chef />}></Route>
+    </Routes>
   );
 };
 

@@ -1,4 +1,4 @@
-export const GET_CURRENT_USER = "SET_CURRENT_USER";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 export const LOGIN = "LOGIN";
 export const LOGIN_SUCCESS = "";

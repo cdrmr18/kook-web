@@ -1,5 +1,5 @@
 import {
-  GET_CURRENT_USER,
+  SET_CURRENT_USER,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
@@ -16,7 +16,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GET_CURRENT_USER:
+    case SET_CURRENT_USER:
       return { ...state, currentUser: payload };
     case LOGIN_SUCCESS:
       return { ...state, currentUser: payload };

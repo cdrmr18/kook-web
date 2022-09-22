@@ -1,7 +1,10 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { getRecipes } from "../../store/recipes/recipesSelector";
 import RecipeCard from "../../components/recipeCard/recipeCard.component";
-import { RecipesContext } from "../../context/recipes.context";
+
 import {
   RecipesPreviewContainer,
   RecipesTitle,
@@ -9,7 +12,8 @@ import {
 } from "./recipesPreview.styles";
 
 const RecipesPreview = () => {
-  const { recipesMap } = useContext(RecipesContext);
+  const { recipesMap } = useSelector(getRecipes);
+
   return (
     <RecipesPreviewContainer>
       {Object.keys(recipesMap).map((title) => (

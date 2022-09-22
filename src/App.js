@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
+  getRecipesAndDocuments,
 } from "./utils/firebase/firebaseUtils";
+import { setRecipesMap } from "./store/recipes/recipesActions";
 import { setCurrentUser } from "./store/user/userActions";
 
 import Recipes from "./routes/recipes/recipes.component";
@@ -25,6 +27,14 @@ function App() {
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const getRecipesMap = async () => {
+      const recipes = await getRecipesAndDocuments();
+      dispatch(setRecipesMap(recipes));
+    };
+    getRecipesMap();
   }, []);
 
   return (

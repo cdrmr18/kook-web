@@ -1,4 +1,5 @@
-import { GET_CHEFS } from "./chefsTypes";
-import { createAction } from "../../utils/reducer/reducerUtils";
+import { SET_CHEFS } from "./chefsTypes";
 
-export const setChefsMap = (chefsMap) => createAction(GET_CHEFS, chefsMap);
+export const setChefsMap = (chefs) => {
+  return { type: SET_CHEFS, payload: chefs };
+};

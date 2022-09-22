@@ -1,11 +1,12 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { ChefsContext } from "../../context/chefs.context";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
 import { getRecipes } from "../../store/recipes/recipesSelector";
+import { getChefsMap } from "../../store/chefs/chefsSelector";
 
 const Chef = () => {
-  const { chefsMap } = useContext(ChefsContext);
+  const { chefsMap } = useSelector(getChefsMap);
   const { recipesMap } = useSelector(getRecipes);
   const { chef } = useParams();
 

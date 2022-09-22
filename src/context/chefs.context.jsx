@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { getChefsAndDocuments } from "../utils/firebase/firebaseUtils";
 
 export const ChefsContext = createContext({

@@ -1,1 +1,1 @@
-export const GET_CHEFS = "GET_CHEFS";
+export const SET_CHEFS = "SET_CHEFS";

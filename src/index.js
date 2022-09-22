@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import { ChefsProvider } from "./context/chefs.context";
 import { CartProvider } from "./context/cart.context";
 import "./index.css";
 import App from "./App";
@@ -15,11 +14,9 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <ChakraProvider>
-          <ChefsProvider>
-            <CartProvider>
-              <App />
-            </CartProvider>
-          </ChefsProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
         </ChakraProvider>
       </BrowserRouter>
     </Provider>

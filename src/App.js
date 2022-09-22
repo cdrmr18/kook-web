@@ -6,9 +6,12 @@ import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
   getRecipesAndDocuments,
+  getChefsAndDocuments,
 } from "./utils/firebase/firebaseUtils";
+
 import { setRecipesMap } from "./store/recipes/recipesActions";
 import { setCurrentUser } from "./store/user/userActions";
+import { setChefsMap } from "./store/chefs/chefsActions";
 
 import Recipes from "./routes/recipes/recipes.component";
 import Checkout from "./routes/checkout/checkout.component";
@@ -35,6 +38,14 @@ function App() {
       dispatch(setRecipesMap(recipes));
     };
     getRecipesMap();
+  }, []);
+
+  useEffect(() => {
+    const getChefsMap = async () => {
+      const chefs = await getChefsAndDocuments();
+      dispatch(setChefsMap(chefs));
+    };
+    getChefsMap();
   }, []);
 
   return (

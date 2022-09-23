@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getRecipes } from "../../store/recipes/recipesSelector";
-import { getChefsMap } from "../../store/chefs/chefsSelector";
+import { getChefs } from "../../store/chefs/chefsSelector";
 
 const Chef = () => {
-  const { chefsMap } = useSelector(getChefsMap);
+  const chefs = useSelector(getChefs);
   const recipes = useSelector(getRecipes);
   const { chef } = useParams();
 
@@ -16,9 +16,7 @@ const Chef = () => {
     setRecipes(recipes[chef]);
   }, [chef, recipes]);
 
-  const mainChef = chefsMap.find(
-    (chefEle) => chefEle.chef.toLowerCase() === chef
-  );
+  const mainChef = chefs.find((chefEle) => chefEle.chef.toLowerCase() === chef);
 
   return (
     <div>

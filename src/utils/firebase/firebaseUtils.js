@@ -106,8 +106,8 @@ export const getChefsAndDocuments = async () => {
 
   const querySnapshot = await getDocs(collectionRef);
 
-  const chefsMap = querySnapshot.docs.map((doc) => doc.data());
-  return chefsMap;
+  const chefs = querySnapshot.docs.map((doc) => doc.data());
+  return chefs;
 };
 
 // get recipes data

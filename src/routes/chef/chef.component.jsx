@@ -7,14 +7,14 @@ import { getChefsMap } from "../../store/chefs/chefsSelector";
 
 const Chef = () => {
   const { chefsMap } = useSelector(getChefsMap);
-  const { recipesMap } = useSelector(getRecipes);
+  const recipes = useSelector(getRecipes);
   const { chef } = useParams();
 
-  const [recipes, setRecipes] = useState(recipesMap[chef]);
+  const [recipesArr, setRecipes] = useState(recipes[chef]);
 
   useEffect(() => {
-    setRecipes(recipesMap[chef]);
-  }, [chef, recipesMap]);
+    setRecipes(recipes[chef]);
+  }, [chef, recipes]);
 
   const mainChef = chefsMap.find(
     (chefEle) => chefEle.chef.toLowerCase() === chef
@@ -24,8 +24,8 @@ const Chef = () => {
     <div>
       <div>{mainChef && mainChef.info[0].name}</div>
       <div>
-        {recipes &&
-          recipes.map((recipe) => <h1 key={recipe.id}>{recipe.name}</h1>)}
+        {recipesArr &&
+          recipesArr.map((recipe) => <h1 key={recipe.id}>{recipe.name}</h1>)}
       </div>
     </div>
   );

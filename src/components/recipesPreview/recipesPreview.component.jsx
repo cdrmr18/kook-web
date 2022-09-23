@@ -12,11 +12,11 @@ import {
 } from "./recipesPreview.styles";
 
 const RecipesPreview = () => {
-  const { recipesMap } = useSelector(getRecipes);
+  const recipes = useSelector(getRecipes);
 
   return (
     <RecipesPreviewContainer>
-      {Object.keys(recipesMap).map((title) => (
+      {Object.keys(recipes).map((title) => (
         <Fragment key={title}>
           <h2>
             <Link to={`${title}`}>
@@ -24,8 +24,8 @@ const RecipesPreview = () => {
             </Link>
           </h2>
           <Preview>
-            {recipesMap &&
-              recipesMap[title]
+            {recipes &&
+              recipes[title]
                 .filter((_, idx) => idx < 4)
                 .map((recipe) => (
                   <RecipeCard key={recipe.id} recipe={recipe} />

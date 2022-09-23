@@ -1,7 +1,7 @@
 import { SET_RECIPES } from "./recipesTypes";
 
 const INITIAL_STATE = {
-  recipesMap: {},
+  recipes: [],
 };
 
 export const recipesReducer = (state = INITIAL_STATE, action) => {
@@ -11,7 +11,7 @@ export const recipesReducer = (state = INITIAL_STATE, action) => {
     case SET_RECIPES:
       return {
         ...state,
-        recipesMap: payload,
+        recipes: payload,
       };
     default:
       return state;

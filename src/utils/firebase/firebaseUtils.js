@@ -117,12 +117,8 @@ export const getRecipesAndDocuments = async () => {
 
   const querySnapshot = await getDocs(q);
 
-  const recipesMap = querySnapshot.docs.reduce((acc, docs) => {
-    const { chef, recipes } = docs.data();
-    acc[chef.toLowerCase()] = recipes;
-    return acc;
-  }, {});
-  return recipesMap;
+  const recipes = querySnapshot.docs.map((doc) => doc.data());
+  return recipes;
 };
 
 //  add new collection and data to db

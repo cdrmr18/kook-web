@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../../store/cart/cartActions";
+import { getCartItems } from "../../store/cart/cartSelector";
+
 import { Button } from "@chakra-ui/react";
-import { CartContext } from "../../context/cart.context";
 import { ProductCardContainer, Footer } from "./recipeCard.styles";
 
 const RecipeCard = ({ recipe }) => {
+  const dispatch = useDispatch();
+  const { cartItems } = useSelector(getCartItems);
   const { name, price, img } = recipe;
-  const { addItemToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    addItemToCart(recipe);
+    dispatch(addItemToCart(cartItems, recipe));
   };
 
   return (

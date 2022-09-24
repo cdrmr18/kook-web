@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CartContext } from "../../context/cart.context";
 import CartItem from "../cartItem/cartItem.component.jsx";
+import { getCartItems } from "../../store/cart/cartSelector";
 
 import { Button } from "@chakra-ui/react";
 import { CartDropDownContainer, CartItems } from "./cartDropdown.styles.jsx";
 
 const CartDropdown = () => {
   const navigate = useNavigate();
-  const { cartItems } = useContext(CartContext);
+  const { cartItems } = useSelector(getCartItems);
 
   return (
     <CartDropDownContainer>

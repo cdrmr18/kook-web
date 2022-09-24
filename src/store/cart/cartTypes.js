@@ -1,2 +1,4 @@
 export const TOGGLE_SHOW_CART = "TOGGLE_SHOW_CART";
 export const SET_CART_ITEMS = "SET_CART_ITEMS";
+export const SET_CART_COUNT = "SET_CART_COUNT";
+export const SET_CART_TOTAL = "SET_CART_TOTAL";

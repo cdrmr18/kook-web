@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../store/cart/cartActions";
-import { selectCartReducer } from "../../store/cart/cartSelector";
+import { selectCartItems } from "../../store/cart/cartSelector";
 
 import { Button } from "@chakra-ui/react";
 import { ProductCardContainer, Footer } from "./recipeCard.styles";
 
 const RecipeCard = ({ recipe }) => {
   const dispatch = useDispatch();
-  const { cartItems } = useSelector(selectCartReducer);
+  const cartItems = useSelector(selectCartItems);
   const { name, price, img } = recipe;
 
   const handleAddToCart = () => {

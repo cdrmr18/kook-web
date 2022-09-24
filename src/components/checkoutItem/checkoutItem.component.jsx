@@ -5,7 +5,7 @@ import {
   removeCartItem,
   decrementItemInCart,
 } from "../../store/cart/cartActions";
-import { selectCartReducer } from "../../store/cart/cartSelector";
+import { selectCartItems } from "../../store/cart/cartSelector";
 
 import {
   CheckoutItemContainer,
@@ -16,7 +16,7 @@ import {
 const CheckoutItem = ({ item }) => {
   const dispatch = useDispatch();
   const { name, price, img, quantity } = item;
-  const { cartItems } = useSelector(selectCartReducer);
+  const cartItems = useSelector(selectCartItems);
 
   const handleItemDecrement = () => {
     dispatch(decrementItemInCart(cartItems, item));

@@ -7,7 +7,7 @@ import CartDropdown from "../../components/cartDropdown/cartDropdown.component";
 
 import { signOutUser } from "../../utils/firebase/firebaseUtils";
 import { getCurrentUser } from "../../store/user/userSelector";
-import { selectCartReducer } from "../../store/cart/cartSelector";
+import { selectShowCart } from "../../store/cart/cartSelector";
 
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
 import {
@@ -19,7 +19,7 @@ import {
 
 const NavBar = () => {
   const { currentUser } = useSelector(getCurrentUser);
-  const { showCart } = useSelector(selectCartReducer);
+  const showCart = useSelector(selectShowCart);
 
   return (
     <Fragment>

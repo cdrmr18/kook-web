@@ -4,18 +4,6 @@ export const toggleShowCart = (bool) => {
   return { type: TOGGLE_SHOW_CART, payload: bool };
 };
 
-// export const updateCartItems = (newCartItems) => {
-
-//   return {
-//     type: SET_CART_ITEMS,
-//     payload: {
-//       cartItems: newCartItems,
-//       cartCount: newCartCount,
-//       cartTotal: newCartTotal,
-//     },
-//   };
-// };
-
 export const addCartItem = (cartItems, recipeToAdd) => {
   const existingItem = cartItems.find((item) => item.id === recipeToAdd.id);
 

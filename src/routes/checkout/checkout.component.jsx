@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCartReducer } from "../../store/cart/cartSelector";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cartSelector";
 import CheckoutItem from "../../components/checkoutItem/checkoutItem.component";
 import {
   CheckoutContainer,
@@ -10,7 +13,8 @@ import {
 } from "./checkout.styles";
 
 const Checkout = () => {
-  const { cartItems, cartTotal } = useSelector(selectCartReducer);
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
 
   return (
     <CheckoutContainer>
